@@ -1,46 +1,21 @@
-import { Server } from 'http';
-import app from './app';
-import config from './config';
+import app from "./app";
+import { prisma } from "./lib/prisma";
 
+const PORT = process.env.PORT || 3000;
 
-async function bootstrap() {
-    // This variable will hold our server instance
-    let server: Server;
-
+async function main() {
     try {
-        // Start the server
-        server = app.listen(config.port, () => {
-            console.log(`🚀 Server is running on http://localhost:${config.port}`);
-        });
+        await prisma.$connect();
+        console.log("Connected to the database successfully.");
 
-        // Function to gracefully shut down the server
-        const exitHandler = () => {
-            if (server) {
-                server.close(() => {
-                    console.log('Server closed gracefully.');
-                    process.exit(1); // Exit with a failure code
-                });
-            } else {
-                process.exit(1);
-            }
-        };
-
-        // Handle unhandled promise rejections
-        process.on('unhandledRejection', (error) => {
-            console.log('Unhandled Rejection is detected, we are closing our server...');
-            if (server) {
-                server.close(() => {
-                    console.log(error);
-                    process.exit(1);
-                });
-            } else {
-                process.exit(1);
-            }
+        app.listen(PORT, () => {
+            console.log(`Server is running on http://localhost:${PORT}`);
         });
     } catch (error) {
-        console.error('Error during server startup:', error);
+        console.error("An error occurred:", error);
+        await prisma.$disconnect();
         process.exit(1);
     }
 }
 
-bootstrap();
+main();
