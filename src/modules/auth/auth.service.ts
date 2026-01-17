@@ -1,5 +1,7 @@
+import bcrypt from 'bcryptjs';
 import { UserStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
+import { jwtHelper } from '../../helper/jwtHelper';
 
 
 const loginUser = async (payload: {email:string, password: string})=> {
@@ -12,13 +14,39 @@ const loginUser = async (payload: {email:string, password: string})=> {
     })
 
     if(!user){
-        throw new Error("User does't exits!")
+        return {
+            success: false,
+            status: 503,
+            message: "User does't exits!"
+        }
     }
 
-    return user;
+    const isCompiredPass = await bcrypt.compare(payload.password, user.password)
+
+    if(!isCompiredPass){
+        return {
+            success: false,
+            status: 403,
+            message: "Password does't match!"
+        }
+    }
+
+    const accessToken = await jwtHelper.generateToken({email: user.email, role: user.role}, "jwtsecret", "7d");
+    const refreshToken = await jwtHelper.generateToken({email: user.email, role: user.role}, "jwtsecret", "90d");
+
+    const {password, ...data} = user;
+
+    return {
+        success: true,
+        status: 200,
+        message: "Login Successfull!",
+        data,
+        accessToken,
+        refreshToken
+    };
 }
 
 
-export const userServices = {
+export const authServices = {
     loginUser
 }
