@@ -18,7 +18,7 @@ app.use(express.json());
 app.use("/api/v1", Routers);
 
 app.get("/", (req, res) => {
-    res.send("Hello, World!");
+    res.send("WellCome to payment server!");
 });
 
 
