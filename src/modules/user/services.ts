@@ -34,9 +34,21 @@ const createUser = async (payload: {name:string, email:string, password: string}
     };
 }
 
-const getUser = async ()=> {
-    const result = await prisma.user.findMany()
-    return result;
+const getUser = async (payload: {email: string, password: string})=> {
+    const user = await prisma.user.findUnique({
+        where: {
+            email: payload?.email
+        },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            status: true
+        }
+    })
+
+    return user;
 }
 
 

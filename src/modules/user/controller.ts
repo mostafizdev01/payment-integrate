@@ -12,8 +12,8 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 
 
 const getUser = async (req: Request, res: Response, next: NextFunction) => {
-    const result = await userServices.getUser()
-
+    const userData = req.user;
+    const result = await userServices.getUser(userData)
     res.json({
         success: true,
         status: 200,

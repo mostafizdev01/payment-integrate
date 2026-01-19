@@ -22,6 +22,20 @@ model User {
   status    UserStatus @default(ACTIVE)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  plans     Plan[]
+}
+
+model Plan {
+  id                       String        @id @default(uuid())
+  customer_email           String
+  amount                   Int
+  status                   PaymentStatus @default(UNPAID)
+  user                     User          @relation(fields: [customer_email], references: [email])
+  currency                 String
+  country                  String
+  card_account_holder_name String
+  transition_id            String
+  payment_methud_type      String
 }
 
 enum UserRole {
