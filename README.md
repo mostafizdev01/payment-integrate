@@ -25,7 +25,7 @@ This backend allows users to register, login, purchase plans, and handle payment
   - TypeScript
   - Prisma ORM
   - Stripe API
-  - PostgreSQL / MySQL / SQLite (via Prisma)
+  - PostgreSQL (via Prisma)
   - JWT Authentication
   - CORS & Cookie Handling
 

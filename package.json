@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsx watch src/server.ts"
+    "dev": "npx tsx watch src/server.ts", 
+    "build": "tsc",
+    "installCommand": "pnpm install --no-frozen-lockfile"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -37,4 +40,5 @@
     "pg": "^8.16.3",
     "stripe": "^20.2.0"
   }
+
 }
