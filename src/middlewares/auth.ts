@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-export const auth = (req: Request & {user?:any}, res: Response, next: NextFunction) => {
+export const auth = (req: Request, res: Response, next: NextFunction) => {
 
   let token: string | undefined;
   //   const token = req.headers.cookie?.split(" ")[0] || req.headers.authorization?.split(" ")[0];
