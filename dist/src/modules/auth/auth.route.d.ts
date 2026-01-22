@@ -1,2 +1,3 @@
-export declare const authRouters: import("express-serve-static-core").Router;
+import { Router as ExpressRouter } from "express";
+export declare const authRouters: ExpressRouter;
 //# sourceMappingURL=auth.route.d.ts.map

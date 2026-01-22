@@ -2,9 +2,9 @@ import express, { Application } from "express";
 // import { toNodeHandler } from "better-auth/node";
 // import { auth } from "./lib/auth";
 import cors from 'cors';
-import { Routers } from "./routes";
 import cookieParser from "cookie-parser";
 import { handleStripeWebhookPayment } from "./modules/payment/payment.controller";
+import { Routers } from "./routes";
 
 const app: Application = express();
 

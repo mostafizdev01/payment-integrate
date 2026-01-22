@@ -1,6 +1,6 @@
-import express from "express";
+import { Router } from "express";
 import { authControllers } from "./auth.controller";
-const router = express.Router();
+const router = Router();
 router.post("/login", authControllers.loginUser);
 export const authRouters = router;
 //# sourceMappingURL=auth.route.js.map

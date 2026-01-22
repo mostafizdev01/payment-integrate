@@ -16,10 +16,10 @@ export declare const authServices: {
         message: string;
         data: {
             id: string;
+            status: UserStatus;
             name: string;
             email: string;
             role: import("../../../generated/prisma/enums").UserRole;
-            status: UserStatus;
             createdAt: Date;
             updatedAt: Date;
         };

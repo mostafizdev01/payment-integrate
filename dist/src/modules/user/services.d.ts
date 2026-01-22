@@ -14,11 +14,11 @@ export declare const userServices: {
         message: string;
         result: {
             id: string;
+            status: import("../../../generated/prisma/enums").UserStatus;
             name: string;
             email: string;
             password: string;
             role: import("../../../generated/prisma/enums").UserRole;
-            status: import("../../../generated/prisma/enums").UserStatus;
             createdAt: Date;
             updatedAt: Date;
         };
@@ -28,10 +28,10 @@ export declare const userServices: {
         password: string;
     }) => Promise<{
         id: string;
+        status: import("../../../generated/prisma/enums").UserStatus;
         name: string;
         email: string;
         role: import("../../../generated/prisma/enums").UserRole;
-        status: import("../../../generated/prisma/enums").UserStatus;
     } | null>;
 };
 //# sourceMappingURL=services.d.ts.map
