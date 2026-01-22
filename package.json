@@ -1,44 +1,30 @@
 {
-  "name": "prisma-blog-app",
+  "name": "next-blog",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsx watch src/server.ts", 
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "installCommand": "pnpm install --no-frozen-lockfile"
+    "start": "node dist/server.js"
   },
-  
   "keywords": [],
-  "author": "",
+  "author": "Next Level Web Development",
   "license": "ISC",
-  "packageManager": "pnpm@10.20.0",
-  "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/node": "^25.0.3",
-    "@types/nodemailer": "^7.0.4",
-    "@types/pg": "^8.16.0",
-    "prisma": "^7.2.0",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
-  },
+  "type": "commonjs",
+  "description": "",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.2.0",
-    "@prisma/client": "^7.2.0",
-    "@types/cookie-parser": "^1.4.10",
-    "@types/jsonwebtoken": "^9.0.10",
-    "bcryptjs": "^3.0.3",
-    "better-auth": "^1.4.9",
-    "cookie-parser": "^1.4.7",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "nodemailer": "^7.0.12",
-    "pg": "^8.16.3",
-    "stripe": "^20.2.0"
+    "express": "^5.1.0",
+    "http": "^0.0.1-security",
+    "ts-node-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.2.0",
+    "dotenv": "^17.2.2"
   }
-
 }

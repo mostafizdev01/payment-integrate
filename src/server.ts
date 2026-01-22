@@ -1,21 +1,66 @@
+import http, { Server } from "http";
 import app from "./app";
-import { prisma } from "./lib/prisma";
+import dotenv from "dotenv";
 
-const PORT = process.env.PORT || 3000;
+dotenv.config();
 
-async function main() {
-    try {
-        await prisma.$connect();
-        console.log("Connected to the database successfully.");
+let server: Server | null = null;
 
-        app.listen(PORT, () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
-        });
-    } catch (error) {
-        console.error("An error occurred:", error);
-        await prisma.$disconnect();
-        process.exit(1);
-    }
+async function startServer() {
+  try {
+    server = http.createServer(app);
+    server.listen(process.env.PORT, () => {
+      console.log(`🚀 Server is running on port ${process.env.PORT}`);
+    });
+
+    handleProcessEvents();
+  } catch (error) {
+    console.error("❌ Error during server startup:", error);
+    process.exit(1);
+  }
 }
 
-main();
+/**
+ * Gracefully shutdown the server and close database connections.
+ * @param {string} signal - The termination signal received.
+ */
+async function gracefulShutdown(signal: string) {
+  console.warn(`🔄 Received ${signal}, shutting down gracefully...`);
+
+  if (server) {
+    server.close(async () => {
+      console.log("✅ HTTP server closed.");
+
+      try {
+        console.log("Server shutdown complete.");
+      } catch (error) {
+        console.error("❌ Error during shutdown:", error);
+      }
+
+      process.exit(0);
+    });
+  } else {
+    process.exit(0);
+  }
+}
+
+/**
+ * Handle system signals and unexpected errors.
+ */
+function handleProcessEvents() {
+  process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
+  process.on("SIGINT", () => gracefulShutdown("SIGINT"));
+
+  process.on("uncaughtException", (error) => {
+    console.error("💥 Uncaught Exception:", error);
+    gracefulShutdown("uncaughtException");
+  });
+
+  process.on("unhandledRejection", (reason) => {
+    console.error("💥 Unhandled Rejection:", reason);
+    gracefulShutdown("unhandledRejection");
+  });
+}
+
+// Start the application
+startServer();
