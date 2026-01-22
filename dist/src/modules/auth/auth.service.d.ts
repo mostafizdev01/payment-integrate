@@ -1,4 +1,3 @@
-import { UserStatus } from "../../../generated/prisma/enums";
 export declare const authServices: {
     loginUser: (payload: {
         email: string;
@@ -16,10 +15,10 @@ export declare const authServices: {
         message: string;
         data: {
             id: string;
-            status: UserStatus;
+            status: import("../../../generated/prisma").$Enums.UserStatus;
             name: string;
             email: string;
-            role: import("../../../generated/prisma/enums").UserRole;
+            role: import("../../../generated/prisma").$Enums.UserRole;
             createdAt: Date;
             updatedAt: Date;
         };
