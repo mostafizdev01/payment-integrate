@@ -1,8 +1,13 @@
-import { Router } from "express";
+import { Router }  from 'express';
+import { Router as ExpressRouter  }  from 'express';
+import { userRouter } from '../modules/user/router';
+import { authRouters } from '../modules/auth/auth.route';
+import { planRouter } from '../modules/plan/plan.router';
 
+const router: ExpressRouter  = Router();
 
-const router = Router();
+router.use("/user", userRouter)
+router.use("/auth", authRouters)
+router.use("/plan", planRouter)
 
-router.post("/user")
-
-export const routes = router;
+export const Routers:ExpressRouter = router;

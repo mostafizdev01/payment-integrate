@@ -1,7 +1,7 @@
 import compression from "compression";
 import cors from "cors";
 import express from "express";
-import { routes } from "./app/routes/routes";
+import { Routers } from "./app/routes/routes";
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-app.use("/api/v1", routes)
+app.use("/api/v1", Routers)
 
 // Default route for testing
 app.get("/", (_req, res) => {
