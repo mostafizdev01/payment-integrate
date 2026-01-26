@@ -8,6 +8,18 @@ const createPlan = async (req:Request, res:Response, next:NextFunction) => {
     return res.send(result)
 }
 
+const getAllPlan = async (req:Request, res:Response)=> {
+    const result = await planService.getAllPlan();
+
+    return res.json({
+        success: true,
+        status: 200,
+        message: "All Plan get successfull!",
+        data: result
+    })
+}
+
 export const planController = {
-    createPlan
+    createPlan,
+    getAllPlan
 }

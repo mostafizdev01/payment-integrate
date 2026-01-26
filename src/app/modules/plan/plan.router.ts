@@ -6,5 +6,7 @@ const router = express.Router();
 
 router.post( "/create-plan", auth, planController.createPlan
 )
+router.get( "/", planController.getAllPlan
+)
 
 export const planRouter: Router = router;

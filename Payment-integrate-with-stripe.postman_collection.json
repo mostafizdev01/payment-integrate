@@ -1,0 +1,196 @@
+{
+  "info": {
+    "_postman_id": "9f52c774-0c2b-4e65-ab2b-43f3e3a3c2f8",
+    "name": "Payment-integrate-with-stripe",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40215271"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Md Mostafiz\",\r\n    \"email\" : \"user1@gmail.com\",\r\n    \"password\": \"12341234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://payment-integrate.onrender.com/api/v1/user/create-user",
+              "protocol": "https",
+              "host": [
+                "payment-integrate",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "create-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Me",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluMTIzNEBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjE4NDYxNzgsImV4cCI6MTc2MTg0OTc3OH0.XCSNd4zpTyQq0Br5UFVv8CSFMSBIYTL5Gmf-vbCGelk",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"host@gmail.com\",\r\n    \"role\": \"HOST\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://payment-integrate.onrender.com/api/v1/user/me",
+              "protocol": "https",
+              "host": [
+                "payment-integrate",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Plan",
+      "item": [
+        {
+          "name": "Create Plan",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"planPrice\": 500\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://payment-integrate.onrender.com/api/v1/plan/create-plan",
+              "protocol": "https",
+              "host": [
+                "payment-integrate",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plan",
+                "create-plan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Plan",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"user5@gmail.com\",\r\n    \"planPrice\": 100\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://payment-integrate.onrender.com/api/v1/plan",
+              "protocol": "https",
+              "host": [
+                "payment-integrate",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plan"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"user1@gmail.com\",\r\n    \"password\": \"12341234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://payment-integrate.onrender.com/api/v1/auth/login",
+              "protocol": "https",
+              "host": [
+                "payment-integrate",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

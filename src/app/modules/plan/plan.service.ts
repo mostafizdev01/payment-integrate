@@ -41,6 +41,13 @@ const createPlan = async (email: string, planPrice: number) => {
 
 }
 
+const getAllPlan = async () => {
+  const result = await prisma.plan.findMany();
+  
+  return result;
+}
+
 export const planService = {
-    createPlan
+    createPlan,
+    getAllPlan
 }
